@@ -1,5 +1,5 @@
 {
-  "presets": ["flow", "babel-preset-expo"],
+  "presets": ["@babel/flow", "babel-preset-expo"],
   "plugins": [
     [
       "module-resolver",
@@ -19,11 +19,11 @@
   ],
   "env": {
     "development": {
-      "plugins": ["transform-react-jsx-source"]
+      "plugins": ["@babel/transform-react-jsx-source"]
     },
     "test": {
-      "plugins": ["transform-react-jsx-source"],
-      "presets": ["env", "stage-0"]
+      "plugins": ["@babel/transform-react-jsx-source"],
+      "presets": ["@babel/env", "@babel/stage-0"]
     }
   }
 }
