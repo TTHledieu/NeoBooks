@@ -1,18 +1,19 @@
 // @flow
 
-import React from 'react';
-import { Text, View, ScrollView } from 'react-native';
-import BookButton from 'components/common/bookButton';
-import books from 'utils/books';
-import styles from './styles';
+import React from 'react'
+import { Text, View, ScrollView } from 'react-native'
+import BookButton from 'components/common/bookButton'
+import books from 'utils/books'
+import styles from './styles'
 
-type Props = {
-};
+type Props = {}
 
 // eslint-disable-next-line react/prefer-stateless-function
 class List extends React.Component<Props> {
-  titleText: string = 'Nouveautés littéraires';
-  descriptionText1: string = 'Choisissez un livre parmi les nouveautés littéraires du moment pour avoir plus d\'informations !';
+  titleText: string = 'Nouveautés littéraires'
+
+  descriptionText1: string =
+    "Choisissez un livre parmi les nouveautés littéraires du moment pour avoir plus d'informations !"
 
   render() {
     return (
@@ -23,20 +24,14 @@ class List extends React.Component<Props> {
         </View>
         <View style={styles.list}>
           <ScrollView showsVerticalScrollIndicator={false}>
-            {
-              books.map((book, index) => (
-                <BookButton
-                  key={book.title}
-                  book={book}
-                  index={index}
-                />
-              ))
-            }
+            {books.map((book, index) => (
+              <BookButton key={book.title} book={book} index={index} />
+            ))}
           </ScrollView>
         </View>
       </View>
-    );
+    )
   }
 }
 
-export default List;
+export default List

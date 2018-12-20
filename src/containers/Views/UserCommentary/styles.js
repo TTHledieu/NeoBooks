@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
-import colors from 'style/colors';
+import { StyleSheet } from 'react-native'
+import colors from 'style/colors'
 
 export default StyleSheet.create({
   container: {
@@ -31,4 +31,4 @@ export default StyleSheet.create({
     flex: 8,
     backgroundColor: colors.white,
   },
-});
+})

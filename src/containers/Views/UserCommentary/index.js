@@ -1,32 +1,37 @@
 // @flow
 
-import 'moment';
-import 'moment/locale/fr';
+import 'moment'
+import 'moment/locale/fr'
 
-import React from 'react';
-import { Text, View } from 'react-native';
-import { GiftedChat } from 'react-native-gifted-chat';
-import styles from './styles';
+import React from 'react'
+import { Text, View } from 'react-native'
+import { GiftedChat } from 'react-native-gifted-chat'
+import styles from './styles'
 
-type Props = {
-};
+type Props = {}
 
 type State = {
   messages: Array<{}>,
-};
+}
 
 // eslint-disable-next-line react/prefer-stateless-function
 class List extends React.Component<Props, State> {
   state = {
     messages: [],
-  };
+  }
+
+  titleText: string = 'Votre avis nous intéresse !'
+
+  descriptionText: string =
+    "Vous avez lu ce livre ? Qu'en avez-vous pensé ? Écrivez votre avis en quelques mots !"
 
   componentWillMount() {
     this.setState({
       messages: [
         {
           _id: 1,
-          text: 'J\'ai bien aimé ce livre, bien qu\'un peu long sur la fin. Je recommande malgré tout !',
+          text:
+            "J'ai bien aimé ce livre, bien qu'un peu long sur la fin. Je recommande malgré tout !",
           createdAt: new Date(),
           user: {
             _id: 2,
@@ -46,7 +51,7 @@ class List extends React.Component<Props, State> {
         },
         {
           _id: 3,
-          text: 'Histoire pas commune qui attire l\'attention. Je recommande',
+          text: "Histoire pas commune qui attire l'attention. Je recommande",
           createdAt: new Date(),
           user: {
             _id: 4,
@@ -55,17 +60,14 @@ class List extends React.Component<Props, State> {
           },
         },
       ],
-    });
+    })
   }
 
   onSend(messages = []) {
     this.setState(previousState => ({
       messages: GiftedChat.append(previousState.messages, messages),
-    }));
+    }))
   }
-
-  titleText: string = 'Votre avis nous intéresse !';
-  descriptionText: string = 'Vous avez lu ce livre ? Qu\'en avez-vous pensé ? Écrivez votre avis en quelques mots !';
 
   render() {
     return (
@@ -86,8 +88,8 @@ class List extends React.Component<Props, State> {
           />
         </View>
       </View>
-    );
+    )
   }
 }
 
-export default List;
+export default List

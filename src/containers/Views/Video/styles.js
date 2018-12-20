@@ -1,7 +1,7 @@
 // @flow
 
-import { StyleSheet } from 'react-native';
-import colors from 'style/colors';
+import { StyleSheet } from 'react-native'
+import colors from 'style/colors'
 
 export default StyleSheet.create({
   container: {
@@ -47,4 +47,4 @@ export default StyleSheet.create({
     lineHeight: 22,
     paddingTop: 20,
   },
-});
+})

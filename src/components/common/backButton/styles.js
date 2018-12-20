@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
   backButton: {
@@ -15,4 +15,4 @@ export default StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.1)',
     borderRadius: 100,
   },
-});
+})

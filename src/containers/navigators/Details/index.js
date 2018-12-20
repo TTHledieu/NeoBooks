@@ -1,14 +1,14 @@
 // @flow
 
-import React from 'react';
-import { TabNavigator } from 'react-navigation';
-import Focus from 'containers/Views/Focus';
-import Commentary from 'containers/Views/Commentary';
-import Video from 'containers/Views/Video';
-import UserCommentary from 'containers/Views/UserCommentary';
-import TabIcon from 'components/common/navigators/TabIcon';
-import colors from 'style/colors';
-import TabTop from './TabTop';
+import React from 'react'
+import { TabNavigator } from 'react-navigation'
+import Focus from 'containers/Views/Focus'
+import Commentary from 'containers/Views/Commentary'
+import Video from 'containers/Views/Video'
+import UserCommentary from 'containers/Views/UserCommentary'
+import TabIcon from 'components/common/navigators/TabIcon'
+import colors from 'style/colors'
+import TabTop from './TabTop'
 
 const DetailsNavigator = TabNavigator(
   {
@@ -22,7 +22,7 @@ const DetailsNavigator = TabNavigator(
     Commentary: {
       screen: Commentary,
       navigationOptions: {
-        title: 'Avis d\'un critique',
+        title: "Avis d'un critique",
         tabBarIcon: props => <TabIcon {...props} name="chatbubbles" />,
       },
     },
@@ -51,6 +51,6 @@ const DetailsNavigator = TabNavigator(
       showIcon: true,
     },
   },
-);
+)
 
-export default DetailsNavigator;
+export default DetailsNavigator

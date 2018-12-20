@@ -1,24 +1,21 @@
 // @flow
 
-import React from 'react';
-import { Text, ScrollView, View, Image } from 'react-native';
-import { withNavigation } from 'react-navigation';
-import styles from './styles';
+import React from 'react'
+import { Text, ScrollView, View, Image } from 'react-native'
+import { withNavigation } from 'react-navigation'
+import styles from './styles'
 
 type Props = {
   navigation: Object,
-};
+}
 
 const Focus = ({ navigation }: Props): Node => {
-  const { book } = navigation.state.params;
+  const { book } = navigation.state.params
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         {/* <BackButton /> */}
-        <Image
-          style={styles.image}
-          source={{ uri: book.img }}
-        />
+        <Image style={styles.image} source={{ uri: book.img }} />
       </View>
       <View style={styles.body}>
         <View style={styles.infos}>
@@ -40,7 +37,7 @@ const Focus = ({ navigation }: Props): Node => {
         </View>
       </View>
     </View>
-  );
-};
+  )
+}
 
-export default withNavigation(Focus);
+export default withNavigation(Focus)

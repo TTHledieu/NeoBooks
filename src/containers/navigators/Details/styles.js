@@ -1,7 +1,7 @@
 // @flow
 
-import { StyleSheet } from 'react-native';
-import colors from 'style/colors';
+import { StyleSheet } from 'react-native'
+import colors from 'style/colors'
 
 export default StyleSheet.create({
   icon: {
@@ -33,4 +33,4 @@ export default StyleSheet.create({
   safeAreaViewContainer: {
     backgroundColor: colors.white,
   },
-});
+})

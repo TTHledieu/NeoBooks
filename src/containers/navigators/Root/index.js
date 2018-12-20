@@ -1,24 +1,25 @@
 // @flow
 
-import { StackNavigator } from 'react-navigation';
-import List from 'containers/Views/List';
-import DetailsNavigator from 'containers/navigators/Details';
+import { StackNavigator } from 'react-navigation'
+import List from 'containers/Views/List'
+import DetailsNavigator from 'containers/navigators/Details'
 
-export default () => StackNavigator(
-  {
-    InitialScreen: {
-      screen: List,
+export default () =>
+  StackNavigator(
+    {
+      InitialScreen: {
+        screen: List,
+      },
+      DetailsScreen: {
+        screen: DetailsNavigator,
+      },
     },
-    DetailsScreen: {
-      screen: DetailsNavigator,
+    {
+      headerMode: 'none',
+      mode: 'modal',
+      initialRouteName: 'InitialScreen',
+      navigationOptions: {
+        gesturesEnabled: true,
+      },
     },
-  },
-  {
-    headerMode: 'none',
-    mode: 'modal',
-    initialRouteName: 'InitialScreen',
-    navigationOptions: {
-      gesturesEnabled: true,
-    },
-  },
-);
+  )

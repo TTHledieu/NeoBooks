@@ -1,18 +1,18 @@
 /* @flow */
 
-import * as React from 'react';
-import { Animated, View, StyleSheet } from 'react-native';
-import { TabBar } from 'react-native-tab-view';
-import TabBarIcon from 'react-navigation/src/views/TabView/TabBarIcon';
-import type { TabScene } from 'react-navigation';
-import type Props from 'react-navigation/src/views/TabView/TabBarBottom';
-import styles from './styles';
+import * as React from 'react'
+import { Animated, View, StyleSheet } from 'react-native'
+import { TabBar } from 'react-native-tab-view'
+import TabBarIcon from 'react-navigation/src/views/TabView/TabBarIcon'
+import type { TabScene } from 'react-navigation'
+import type Props from 'react-navigation/src/views/TabView/TabBarBottom'
+import styles from './styles'
 
 type IndicatorTabScene = {
   ...TabScene,
   position: Animated.Value,
-  width: Animated.Value
-};
+  width: Animated.Value,
+}
 
 export default class TabBarTop extends React.PureComponent<Props> {
   static defaultProps = {
@@ -22,12 +22,12 @@ export default class TabBarTop extends React.PureComponent<Props> {
     showLabel: true,
     upperCaseLabel: true,
     allowFontScaling: true,
-  };
+  }
 
   handleOnPress = (scene: TabScene) => {
-    const { getOnPress, jumpToIndex, navigation } = this.props;
-    const previousScene = navigation.state.routes[navigation.state.index];
-    const onPress = getOnPress(previousScene, scene);
+    const { getOnPress, jumpToIndex, navigation } = this.props
+    const previousScene = navigation.state.routes[navigation.state.index]
+    const onPress = getOnPress(previousScene, scene)
 
     if (onPress) {
       onPress({
@@ -35,11 +35,11 @@ export default class TabBarTop extends React.PureComponent<Props> {
         scene,
         jumpToIndex,
         defaultHandler: jumpToIndex,
-      });
+      })
     } else {
-      jumpToIndex(scene.index);
+      jumpToIndex(scene.index)
     }
-  };
+  }
 
   renderIcon = (scene: TabScene) => {
     const {
@@ -50,9 +50,9 @@ export default class TabBarTop extends React.PureComponent<Props> {
       renderIcon,
       showIcon,
       iconStyle,
-    } = this.props;
+    } = this.props
     if (showIcon === false) {
-      return null;
+      return null
     }
     return (
       <TabBarIcon
@@ -64,12 +64,12 @@ export default class TabBarTop extends React.PureComponent<Props> {
         scene={scene}
         style={[styles.icon, iconStyle]}
       />
-    );
-  };
+    )
+  }
 
   renderIndicator = (scene: IndicatorTabScene) => {
-    const { width, position } = scene;
-    const translateX = Animated.multiply(position, width);
+    const { width, position } = scene
+    const translateX = Animated.multiply(position, width)
 
     const containerStyle = StyleSheet.flatten([
       styles.indicatorContainer,
@@ -77,21 +77,21 @@ export default class TabBarTop extends React.PureComponent<Props> {
         width,
         transform: [{ translateX }, { translateY: 2 }],
       },
-    ]);
+    ])
 
     return (
       <Animated.View style={containerStyle}>
         <View style={styles.indicator} />
       </Animated.View>
-    );
-  };
+    )
+  }
 
   render() {
-    const { props }: { props: any } = this;
+    const { props }: { props: any } = this
 
-    const tabNbr = props.navigationState.routes.length;
-    const tabWidth: any = StyleSheet.flatten(styles.tabBarTab);
-    const widthTabBar = tabWidth.width * tabNbr;
+    const tabNbr = props.navigationState.routes.length
+    const tabWidth: any = StyleSheet.flatten(styles.tabBarTab)
+    const widthTabBar = tabWidth.width * tabNbr
 
     return (
       <View style={styles.safeAreaViewContainer}>
@@ -107,6 +107,6 @@ export default class TabBarTop extends React.PureComponent<Props> {
           />
         </View>
       </View>
-    );
+    )
   }
 }

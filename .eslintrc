@@ -21,6 +21,10 @@
         ]
       }
     ],
+    "semi": 0,
+    "arrow-parens": 0,
+    "operator-linebreak": 0,
+    "react/destructuring-assignment": 0,
     "quote-props": 0,
     "no-console": [
       "error",
