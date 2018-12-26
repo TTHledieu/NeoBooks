@@ -3,24 +3,35 @@
 import React from 'react'
 import { Text, View, ScrollView } from 'react-native'
 import BookButton from 'components/BookButton'
+import Button from 'components/Button'
+import CircleAvatar from 'components/CircleAvatar'
+import { withCamera } from 'containers/CameraContext'
 import books from 'utils/books'
 import styles from './styles'
 
-type Props = {}
+type Props = {
+  picture: string,
+  setCameraMode: boolean => void,
+}
 
 // eslint-disable-next-line react/prefer-stateless-function
-class List extends React.Component<Props> {
-  titleText: string = 'Nouveautés littéraires'
-
-  descriptionText1: string =
-    "Choisissez un livre parmi les nouveautés littéraires du moment pour avoir plus d'informations !"
-
+class Profile extends React.Component<Props> {
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          <Text style={styles.titleText}>{this.titleText}</Text>
-          <Text style={styles.descriptionText}>{this.descriptionText1}</Text>
+          <CircleAvatar
+            onPress={() => this.props.setCameraMode(true)}
+            source={this.props.picture}
+          />
+          <Text style={styles.title}>Théotime</Text>
+          <Button
+            style={{ marginTop: 20 }}
+            variant="alert"
+            onPress={() => {}}
+          >
+            Se déconnecter
+          </Button>
         </View>
         <View style={styles.list}>
           <ScrollView showsVerticalScrollIndicator={false}>
@@ -34,4 +45,4 @@ class List extends React.Component<Props> {
   }
 }
 
-export default List
+export default withCamera(Profile)

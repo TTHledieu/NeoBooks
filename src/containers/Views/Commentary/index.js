@@ -3,7 +3,7 @@
 import React from 'react'
 import { Text, ScrollView, View } from 'react-native'
 import { withNavigation } from 'react-navigation'
-import ClapButton from 'components/common/clapButton'
+import ClapButton from 'components/ClapButton'
 import styles from './styles'
 
 type Props = {

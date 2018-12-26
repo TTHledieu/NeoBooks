@@ -2,13 +2,13 @@
 
 import React from 'react'
 import { TabNavigator } from 'react-navigation'
-import Focus from 'containers/Views/Focus'
-import Commentary from 'containers/Views/Commentary'
-import Video from 'containers/Views/Video'
-import UserCommentary from 'containers/Views/UserCommentary'
-import TabIcon from 'components/common/navigators/TabIcon'
+import Focus from 'containers/views/Focus'
+import Commentary from 'containers/views/Commentary'
+import Video from 'containers/views/Video'
+import UserCommentary from 'containers/views/UserCommentary'
+import TabIcon from 'components/navigators/TabIcon'
 import colors from 'style/colors'
-import TabTop from './TabTop'
+import TabTop from '../TabTop'
 
 const DetailsNavigator = TabNavigator(
   {

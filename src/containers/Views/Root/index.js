@@ -3,6 +3,8 @@
 import React from 'react'
 import { AppLoading } from 'expo'
 import rootNavigation from 'containers/navigators/Root'
+import CameraContext from 'containers/CameraContext'
+import Camera from 'containers/views/Camera'
 
 type Props = {}
 
@@ -22,7 +24,13 @@ class Root extends React.Component<Props> {
     }
 
     const RootScreen = rootNavigation()
-    return <RootScreen />
+    return (
+      <CameraContext.Provider>
+        <CameraContext.Consumer>
+          {({ cameraMode }) => (cameraMode ? <Camera /> : <RootScreen />)}
+        </CameraContext.Consumer>
+      </CameraContext.Provider>
+    )
   }
 }
 

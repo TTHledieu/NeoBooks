@@ -13,7 +13,7 @@ type Props = {
 const TabIcon = ({ name, tintColor }: Props): Node => (
   <Ionicons
     name={ioniconsByPlatform(name, false)}
-    size={26}
+    size={30}
     style={{ color: tintColor }}
   />
 )

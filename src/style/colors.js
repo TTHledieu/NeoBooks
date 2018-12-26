@@ -14,6 +14,8 @@ export default {
 
   // Useful
   red: '#FF3E41',
+  green: '#19C8A5',
+  orange: '#E66333',
   white: '#FFFFFF',
   black: '#000000',
 }

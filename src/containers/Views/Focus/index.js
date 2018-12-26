@@ -1,7 +1,9 @@
 // @flow
 
 import React from 'react'
-import { Text, ScrollView, View, Image } from 'react-native'
+import {
+  Text, ScrollView, View, Image,
+} from 'react-native'
 import { withNavigation } from 'react-navigation'
 import styles from './styles'
 
