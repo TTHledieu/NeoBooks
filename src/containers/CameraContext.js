@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-const CameraContext = React.createContext({ picture: null })
+const CameraContext = React.createContext({ picture: '', cameraMode: false })
 
 type Props = {
   children: React.Node,
@@ -11,16 +11,20 @@ type Props = {
 class CameraContextProvider extends React.Component<Props> {
   state = { picture: '', cameraMode: false }
 
-  setPicture = (picture: string) => this.setState({ picture })
+  setPicture = (picture: string) => {
+    this.setState({ picture, cameraMode: false })
+  }
 
-  setCameraMode = (cameraMode: boolean) => this.setState({ cameraMode })
+  toggleCamera = (cameraMode: boolean) => {
+    this.setState({ cameraMode })
+  }
 
   render() {
     return (
       <CameraContext.Provider
         value={{
           setPicture: this.setPicture,
-          setCameraMode: this.setCameraMode,
+          toggleCamera: this.toggleCamera,
           picture: this.state.picture,
           cameraMode: this.state.cameraMode,
         }}

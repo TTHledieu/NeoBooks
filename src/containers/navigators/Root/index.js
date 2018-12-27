@@ -1,10 +1,9 @@
 // @flow
 
 import React from 'react'
-import { StackNavigator, TabNavigator } from 'react-navigation'
+import { TabNavigator } from 'react-navigation'
 import List from 'containers/views/List'
 import Profile from 'containers/views/Profile'
-import DetailsNavigator from 'containers/navigators/Details'
 import TabIcon from 'components/navigators/TabIcon'
 import colors from 'style/colors'
 import TabTop from '../TabTop'
@@ -38,22 +37,4 @@ const RootNavigator = TabNavigator(
   },
 )
 
-export default () =>
-  StackNavigator(
-    {
-      InitialScreen: {
-        screen: RootNavigator,
-      },
-      DetailsScreen: {
-        screen: DetailsNavigator,
-      },
-    },
-    {
-      headerMode: 'none',
-      mode: 'modal',
-      initialRouteName: 'InitialScreen',
-      navigationOptions: {
-        gesturesEnabled: true,
-      },
-    },
-  )
+export default RootNavigator

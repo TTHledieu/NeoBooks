@@ -4,7 +4,6 @@ import React from 'react'
 import { TabNavigator } from 'react-navigation'
 import Focus from 'containers/views/Focus'
 import Commentary from 'containers/views/Commentary'
-import Video from 'containers/views/Video'
 import UserCommentary from 'containers/views/UserCommentary'
 import TabIcon from 'components/navigators/TabIcon'
 import colors from 'style/colors'
@@ -24,13 +23,6 @@ const DetailsNavigator = TabNavigator(
       navigationOptions: {
         title: "Avis d'un critique",
         tabBarIcon: props => <TabIcon {...props} name="chatbubbles" />,
-      },
-    },
-    Video: {
-      screen: Video,
-      navigationOptions: {
-        title: 'Vidéo',
-        tabBarIcon: props => <TabIcon {...props} name="videocam" />,
       },
     },
     UserCommentary: {

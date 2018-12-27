@@ -11,7 +11,8 @@ import styles from './styles'
 
 type Props = {
   setPicture: string => void,
-  setCameraMode: boolean => void,
+  toggleCamera: boolean => void,
+  navigation: Object,
 }
 
 class CameraView extends React.Component<Props> {
@@ -29,12 +30,19 @@ class CameraView extends React.Component<Props> {
 
   getNewPicture = async () => {
     if (this.cameraRef) {
-      const newPicture = await this.cameraRef.takePictureAsync()
+      const newPicture = await this.cameraRef.takePictureAsync({
+        quality: 1,
+      })
       if (newPicture && newPicture.uri) {
         this.props.setPicture(newPicture.uri)
-        this.props.setCameraMode(false)
+        this.props.navigation.goBack(null)
       }
     }
+  }
+
+  closeCamera = () => {
+    this.props.toggleCamera(false)
+    this.props.navigation.goBack(null)
   }
 
   render() {
@@ -88,10 +96,7 @@ class CameraView extends React.Component<Props> {
                 style={{ color: colors.white }}
               />
             </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => this.props.setCameraMode(false)}
-            >
+            <TouchableOpacity style={styles.button} onPress={this.closeCamera}>
               <Ionicons
                 name={ioniconsByPlatform('close', false)}
                 size={48}

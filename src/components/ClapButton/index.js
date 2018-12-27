@@ -4,39 +4,36 @@ import React from 'react'
 import { Text, View, TouchableOpacity, Image, Animated } from 'react-native'
 import styles from './styles'
 
-export default class ClapButton extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      count: 0,
-      claps: [],
-    }
-    this.clap = this.clap.bind(this)
-    this.keepClaping = this.keepClaping.bind(this)
-    this.stopClaping = this.stopClaping.bind(this)
+class ClapButton extends React.Component {
+  state = {
+    count: 0,
+    claps: [],
   }
+
   animationComplete(countNum) {
-    claps = this.state.claps
+    const claps = this.state.claps
     claps.splice(claps.indexOf(countNum), 1)
     this.setState({ claps })
   }
-  clap() {
+
+  clap = () => {
     let count = this.state.count
     const claps = this.state.claps
     count++
     claps.push(count)
     this.setState({ count })
-    console.log(count)
-    console.log(claps)
   }
-  keepClaping() {
+
+  keepClaping = () => {
     this.clapTimer = setInterval(() => this.clap(), 150)
   }
-  stopClaping() {
+
+  stopClaping = () => {
     if (this.clapTimer) {
       clearInterval(this.clapTimer)
     }
   }
+
   renderClaps() {
     return this.state.claps.map(countNum => (
       <ClapBubble
@@ -46,6 +43,7 @@ export default class ClapButton extends React.Component {
       />
     ))
   }
+
   render() {
     return (
       <View>
@@ -65,18 +63,16 @@ export default class ClapButton extends React.Component {
 }
 
 class ClapBubble extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      yPosition: new Animated.Value(0),
-      opacity: new Animated.Value(0),
-    }
+  state = {
+    yPosition: new Animated.Value(0),
+    opacity: new Animated.Value(0.3),
   }
+
   componentDidMount() {
     Animated.parallel([
-      Animated.timing(this.state.yPosition, {
+      Animated.spring(this.state.yPosition, {
         toValue: -100,
-        duration: 500,
+        duration: 600,
         useNativeDriver: true,
       }).start(),
       Animated.timing(this.state.opacity, {
@@ -90,6 +86,7 @@ class ClapBubble extends React.Component {
       }, 1000)
     })
   }
+
   render() {
     const animationStyle = {
       transform: [
@@ -106,3 +103,5 @@ class ClapBubble extends React.Component {
     )
   }
 }
+
+export default ClapButton

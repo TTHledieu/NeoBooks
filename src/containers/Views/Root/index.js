@@ -2,11 +2,12 @@
 
 import React from 'react'
 import { AppLoading } from 'expo'
-import rootNavigation from 'containers/navigators/Root'
+import rootLayout from 'containers/navigators/createLayoutNavigator'
 import CameraContext from 'containers/CameraContext'
-import Camera from 'containers/views/Camera'
 
-type Props = {}
+type Props = {
+  navigation: Object,
+}
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Root extends React.Component<Props> {
@@ -22,13 +23,10 @@ class Root extends React.Component<Props> {
     if (!this.state.showApp) {
       return <AppLoading />
     }
-
-    const RootScreen = rootNavigation()
+    const Layout = rootLayout()
     return (
-      <CameraContext.Provider>
-        <CameraContext.Consumer>
-          {({ cameraMode }) => (cameraMode ? <Camera /> : <RootScreen />)}
-        </CameraContext.Consumer>
+      <CameraContext.Provider navigation={this.props.navigation}>
+        <Layout />
       </CameraContext.Provider>
     )
   }

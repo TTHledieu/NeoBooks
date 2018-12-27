@@ -18,6 +18,11 @@ export default StyleSheet.create({
     textAlign: 'center',
     marginTop: 15,
   },
+  apreciateBooks: {
+    fontSize: 17,
+    textAlign: 'left',
+    margin: 20,
+  },
   list: {
     flex: 5,
     backgroundColor: colors.white,
