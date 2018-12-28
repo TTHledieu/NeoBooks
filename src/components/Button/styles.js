@@ -8,6 +8,9 @@ export default StyleSheet.create({
     justifyContent: 'center',
     padding: 10,
   },
+  disabled: {
+    backgroundColor: colors.lightGray,
+  },
   primary: {
     backgroundColor: colors.primary,
   },

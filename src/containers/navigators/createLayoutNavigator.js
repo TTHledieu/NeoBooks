@@ -8,7 +8,7 @@ import RootNavigator from 'containers/navigators/Root'
 export default () =>
   StackNavigator(
     {
-      InitialScreen: {
+      RootScreen: {
         screen: RootNavigator,
       },
       DetailsScreen: {
@@ -21,7 +21,7 @@ export default () =>
     {
       headerMode: 'none',
       mode: 'modal',
-      initialRouteName: 'InitialScreen',
+      initialRouteName: 'RootScreen',
       navigationOptions: {
         gesturesEnabled: true,
       },

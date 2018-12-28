@@ -11,19 +11,28 @@ type Props = {
   children: React.Node,
   variant?: 'primary' | 'success' | 'warning' | 'alert',
   style: StyleSheet,
+  disabled?: boolean,
 }
 
-const Button = ({ onPress, variant, children, style }: Props): Node => (
+const Button = ({
+  onPress,
+  variant,
+  children,
+  style,
+  disabled,
+}: Props): Node => (
   <TouchableOpacity
     onPress={onPress}
-    style={[style, styles.button, styles[variant]]}
+    style={[style, styles.button, styles[variant], disabled && styles.disabled]}
+    disabled={disabled}
   >
-    <Text style={{ color: colors.white }}>{children}</Text>
+    <Text style={{ fontSize: 17, color: colors.white }}>{children}</Text>
   </TouchableOpacity>
 )
 
 Button.defaultProps = {
   variant: 'primary',
+  disabled: false,
 }
 
 export default Button
