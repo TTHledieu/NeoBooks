@@ -3,6 +3,9 @@
 import React from 'react'
 import { Text, View, Animated, Easing } from 'react-native'
 import { withNavigation } from 'react-navigation'
+import { connect } from 'react-redux'
+import { setUser } from 'redux/actions/user'
+import type { SetUser } from 'redux/actions/user.type'
 import State from 'components/utils/State'
 import Button from 'components/Button'
 import Input from 'components/Input'
@@ -24,7 +27,12 @@ const animate = () => {
   }).start()
 }
 
-const Login = (): Node => (
+type Props = {
+  dSetUser: typeof SetUser,
+  // user: User,
+}
+
+const Login = ({ dSetUser }: Props): Node => (
   <Animated.View style={[styles.container, { transform: [{ rotateY }] }]}>
     <State state={{ id: '', password: '', mode: 'login' }}>
       {({ state, setState }) => (
@@ -62,8 +70,10 @@ const Login = (): Node => (
                 <Button
                   variant="success"
                   disabled={!state.id || !state.password}
-                  onPress={() => {
+                  onPress={async () => {
                     // Request
+                    await setTimeout(() => {}, 1000)
+                    dSetUser({ id: 1, name: 'tth' })
                   }}
                 >
                   {state.mode === 'login' ? 'Se connecter' : "Je m'inscris"}
@@ -92,4 +102,15 @@ const Login = (): Node => (
   </Animated.View>
 )
 
-export default withNavigation(Login)
+const mapStateToProps = ({ user }) => ({
+  user,
+})
+
+const mapDispatchToProps = {
+  dSetUser: setUser,
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withNavigation(Login))

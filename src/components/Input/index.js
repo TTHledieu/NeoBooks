@@ -19,6 +19,7 @@ const Input = ({ onChange, value, style, placeholder, mode }: Props): Node => (
     value={value}
     placeholder={mode === 'text' ? placeholder : '******'}
     secureTextEntry={mode === 'password'}
+    autoCapitalize="none"
   />
 )
 
