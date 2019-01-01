@@ -1,27 +1,31 @@
-/* eslint-disable */
+// @flow
 
 import React from 'react'
+import type { Node } from 'react'
 import { Text, View, TouchableOpacity, Image, Animated } from 'react-native'
+import clap from 'assets/clap.png'
 import styles from './styles'
 
-class ClapButton extends React.Component {
+// Button
+type ClapButtonState = {|
+  count: number,
+  claps: Array<number>,
+|}
+
+class ClapButton extends React.Component<{}, ClapButtonState> {
   state = {
     count: 0,
     claps: [],
   }
 
-  animationComplete(countNum) {
-    const claps = this.state.claps
-    claps.splice(claps.indexOf(countNum), 1)
-    this.setState({ claps })
-  }
+  clapTimer: any = null
 
   clap = () => {
-    let count = this.state.count
-    const claps = this.state.claps
-    count++
-    claps.push(count)
-    this.setState({ count })
+    const { count } = this.state
+    const { claps } = this.state
+    const tmp = count + 1
+    claps.push(tmp)
+    this.setState({ count: tmp })
   }
 
   keepClaping = () => {
@@ -34,15 +38,20 @@ class ClapButton extends React.Component {
     }
   }
 
-  renderClaps() {
-    return this.state.claps.map(countNum => (
+  animationComplete = (countNum: number) => {
+    const { claps } = this.state
+    claps.splice(claps.indexOf(countNum), 1)
+    this.setState({ claps })
+  }
+
+  renderClaps = (): Array<Node> =>
+    this.state.claps.map((countNum: number) => (
       <ClapBubble
         key={countNum}
         count={countNum}
-        animationComplete={this.animationComplete.bind(this)}
+        animationComplete={this.animationComplete}
       />
     ))
-  }
 
   render() {
     return (
@@ -54,7 +63,7 @@ class ClapButton extends React.Component {
           activeOpacity={0.7}
           style={styles.clapButton}
         >
-          <Image source={require('assets/clap.png')} style={styles.clapImage} />
+          <Image source={clap} style={styles.clapImage} />
         </TouchableOpacity>
         {this.renderClaps()}
       </View>
@@ -62,7 +71,19 @@ class ClapButton extends React.Component {
   }
 }
 
-class ClapBubble extends React.Component {
+// Bubble
+type ClapBubbleProps = {|
+  count: number,
+  animationComplete: number => void,
+|}
+
+type ClapBubbleState = {|
+  yPosition: typeof Animated.Value,
+  opacity: typeof Animated.Value,
+|}
+
+// eslint-disable-next-line react/no-multi-comp
+class ClapBubble extends React.Component<ClapBubbleProps, ClapBubbleState> {
   state = {
     yPosition: new Animated.Value(0),
     opacity: new Animated.Value(0.3),
@@ -70,11 +91,13 @@ class ClapBubble extends React.Component {
 
   componentDidMount() {
     Animated.parallel([
+      // $FlowFixMe
       Animated.spring(this.state.yPosition, {
         toValue: -100,
         duration: 600,
         useNativeDriver: true,
       }).start(),
+      // $FlowFixMe
       Animated.timing(this.state.opacity, {
         toValue: 1,
         duration: 500,

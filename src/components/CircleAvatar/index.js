@@ -1,13 +1,15 @@
 // @flow
 
 import React from 'react'
+import type { Node } from 'react'
+
 import { Image, TouchableOpacity } from 'react-native'
 import styles from './styles'
 
-type Props = {
+type Props = {|
   source: string,
   onPress: () => void,
-}
+|}
 
 const CircleAvatar = ({ source, onPress }: Props): Node => (
   <TouchableOpacity onPress={onPress}>

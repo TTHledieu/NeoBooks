@@ -1,16 +1,18 @@
 // @flow
 
 import React from 'react'
+import type { Node } from 'react'
 import { TextInput } from 'react-native'
+import type { ViewStyleProp } from 'react-native/Libraries/StyleSheet/StyleSheet'
 import styles from './styles'
 
-type Props = {
+type Props = {|
   onChange: string => void,
   value: string,
-  style?: {},
-  placeholder: string,
+  style?: ViewStyleProp,
+  placeholder?: string,
   mode: string,
-}
+|}
 
 const Input = ({ onChange, value, style, placeholder, mode }: Props): Node => (
   <TextInput
@@ -25,6 +27,7 @@ const Input = ({ onChange, value, style, placeholder, mode }: Props): Node => (
 
 Input.defaultProps = {
   style: {},
+  placeholder: '',
 }
 
 export default Input

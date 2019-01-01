@@ -2,16 +2,19 @@
 
 import React from 'react'
 
-type Props = {
+type Props = {|
   value: number | string | (() => {}),
-  onChange: () => {},
-  children: React.Node,
-}
+  onChange: (number | string | (() => {})) => void,
+  children: ({}) => React$Element<any>,
+|}
 
-class Value extends React.Component<Props> {
+type State = {|
+  value: number | string | (() => {}),
+|}
+class Value extends React.Component<Props, State> {
   state = { value: this.props.value }
 
-  onChange = value => {
+  onChange = (value: number | string | (() => {})) => {
     this.setState({ value })
     if (this.props.onChange) {
       this.props.onChange(value)

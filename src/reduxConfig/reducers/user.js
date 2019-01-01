@@ -1,13 +1,13 @@
 // @flow
 
-import type { User } from 'redux/actions/user.type'
+import type { User, UserAction } from 'reduxConfig/actions/user.type'
 
 const initialState: User = {
-  id: null,
-  name: null,
+  id: -1,
+  name: '',
 }
 
-const user = (state = initialState, action) => {
+const user = (state: User = initialState, action: UserAction) => {
   switch (action.type) {
     case 'SET_USER':
       return {

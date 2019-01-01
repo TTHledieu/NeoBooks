@@ -1,18 +1,19 @@
 // @flow
 
 import React from 'react'
-import { Text, TouchableOpacity } from 'react-native'
-import type { StyleSheet } from 'react-native'
-import colors from 'style/colors'
+import type { Node } from 'react'
+
+import { TouchableOpacity } from 'react-native'
+import type { ViewStyleProp } from 'react-native/Libraries/StyleSheet/StyleSheet'
 import styles from './styles'
 
-type Props = {
-  onPress: () => true,
-  children: React.Node,
+type Props = {|
+  onPress: () => void | Promise<any>,
+  children: React$Element<any>,
   variant?: 'primary' | 'success' | 'warning' | 'alert',
-  style: StyleSheet,
+  style?: ViewStyleProp,
   disabled?: boolean,
-}
+|}
 
 const Button = ({
   onPress,
@@ -26,13 +27,14 @@ const Button = ({
     style={[style, styles.button, styles[variant], disabled && styles.disabled]}
     disabled={disabled}
   >
-    <Text style={{ fontSize: 17, color: colors.white }}>{children}</Text>
+    {children}
   </TouchableOpacity>
 )
 
 Button.defaultProps = {
   variant: 'primary',
   disabled: false,
+  style: {},
 }
 
 export default Button

@@ -5,7 +5,11 @@ import { AppLoading } from 'expo'
 import CameraContext from 'containers/CameraContext'
 import InitialScreen from 'containers/navigators/InitialScreen'
 
-class Root extends React.Component {
+type State = {|
+  showApp: boolean,
+|}
+
+class Root extends React.Component<{}, State> {
   state = {
     showApp: false,
   }

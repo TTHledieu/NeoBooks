@@ -1,30 +1,20 @@
-/* @flow */
-
 import * as React from 'react'
 import { Animated, View, StyleSheet } from 'react-native'
 import { TabBar } from 'react-native-tab-view'
 import TabBarIcon from 'react-navigation/src/views/TabView/TabBarIcon'
-import type { TabScene } from 'react-navigation'
-import type Props from 'react-navigation/src/views/TabView/TabBarBottom'
 import styles from './styles'
-
-type IndicatorTabScene = {
-  ...TabScene,
-  position: Animated.Value,
-  width: Animated.Value,
-}
 
 export default class TabBarTop extends React.PureComponent<Props> {
   static defaultProps = {
-    activeTintColor: '#fff',
-    inactiveTintColor: '#fff',
+    activeTintColor: '#ffffff',
+    inactiveTintColor: '#ffffff',
     showIcon: false,
     showLabel: true,
     upperCaseLabel: true,
     allowFontScaling: true,
   }
 
-  handleOnPress = (scene: TabScene) => {
+  handleOnPress = scene => {
     const { getOnPress, jumpToIndex, navigation } = this.props
     const previousScene = navigation.state.routes[navigation.state.index]
     const onPress = getOnPress(previousScene, scene)
@@ -41,7 +31,7 @@ export default class TabBarTop extends React.PureComponent<Props> {
     }
   }
 
-  renderIcon = (scene: TabScene) => {
+  renderIcon = scene => {
     const {
       position,
       navigation,
@@ -67,7 +57,7 @@ export default class TabBarTop extends React.PureComponent<Props> {
     )
   }
 
-  renderIndicator = (scene: IndicatorTabScene) => {
+  renderIndicator = scene => {
     const { width, position } = scene
     const translateX = Animated.multiply(position, width)
 
@@ -87,10 +77,10 @@ export default class TabBarTop extends React.PureComponent<Props> {
   }
 
   render() {
-    const { props }: { props: any } = this
+    const { props } = this
 
     const tabNbr = props.navigationState.routes.length
-    const tabWidth: any = StyleSheet.flatten(styles.tabBarTab)
+    const tabWidth = StyleSheet.flatten(styles.tabBarTab)
     const widthTabBar = tabWidth.width * tabNbr
 
     return (

@@ -1,5 +1,13 @@
-import arracheuseVideo from 'assets/arracheuse-video.mp4'
-import clafoutisVideo from 'assets/clafoutis-video.mp4'
+// @flow
+
+export type Book = {
+  title: string,
+  author: string,
+  synopsis: string,
+  img: string,
+  price: string,
+  commentary: { [string]: string },
+}
 
 export default [
   {
@@ -10,7 +18,6 @@ export default [
     img:
       'https://static.fnac-static.com/multimedia/Images/FR/NR/df/a8/8a/9087199/1540-1/tsp20180126120522/L-arracheuse-de-dents.jpg',
     price: '21',
-    video: arracheuseVideo,
     commentary: {
       author: 'Barbara',
       from: 'Neobooks Lyon ',
@@ -43,7 +50,6 @@ export default [
     img:
       'https://static.fnac-static.com/multimedia/Images/FR/NR/21/a9/8a/9087265/1507-1/tsp20180108160744/Un-clafoutis-aux-tomates-cerises.jpg',
     price: '19.90',
-    video: clafoutisVideo,
     commentary: {
       author: 'Manon',
       from: 'Neobooks Aix-En-Provence',

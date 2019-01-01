@@ -1,14 +1,16 @@
 // @flow
 
 import React from 'react'
+import type { Node } from 'react'
 import { Text, View, Animated, Easing } from 'react-native'
 import { withNavigation } from 'react-navigation'
 import { connect } from 'react-redux'
-import { setUser } from 'redux/actions/user'
-import type { SetUser } from 'redux/actions/user.type'
+import { setUser } from 'reduxConfig/actions/user'
+import type { SetUser } from 'reduxConfig/actions/user.type'
 import State from 'components/utils/State'
 import Button from 'components/Button'
 import Input from 'components/Input'
+import colors from 'style/colors'
 import styles from './styles'
 
 const animatedValue = new Animated.Value(0)
@@ -27,10 +29,10 @@ const animate = () => {
   }).start()
 }
 
-type Props = {
+type Props = {|
   dSetUser: typeof SetUser,
   // user: User,
-}
+|}
 
 const Login = ({ dSetUser }: Props): Node => (
   <Animated.View style={[styles.container, { transform: [{ rotateY }] }]}>
@@ -76,7 +78,9 @@ const Login = ({ dSetUser }: Props): Node => (
                     dSetUser({ id: 1, name: 'tth' })
                   }}
                 >
-                  {state.mode === 'login' ? 'Se connecter' : "Je m'inscris"}
+                  <Text style={{ fontSize: 17, color: colors.white }}>
+                    {state.mode === 'login' ? 'Se connecter' : "Je m'inscris"}
+                  </Text>
                 </Button>
               </View>
               <View style={styles.registerLink}>

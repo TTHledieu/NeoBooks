@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react'
+import type { Node } from 'react'
 import {
   Text, ScrollView, View, Image,
 } from 'react-native'
@@ -16,7 +17,6 @@ const Focus = ({ navigation }: Props): Node => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        {/* <BackButton /> */}
         <Image style={styles.image} source={{ uri: book.img }} />
       </View>
       <View style={styles.body}>

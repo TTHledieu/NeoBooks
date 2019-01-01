@@ -2,6 +2,7 @@
 
 import { Ionicons } from '@expo/vector-icons'
 import React from 'react'
+import type { Node } from 'react'
 import { Text, View, TouchableHighlight } from 'react-native'
 import { withNavigation } from 'react-navigation'
 
@@ -9,11 +10,11 @@ import ioniconsByPlatform from 'utils/ionicons'
 import colors from 'style/colors'
 import styles from './styles'
 
-type Props = {
+type Props = {|
   book: Object,
   index: number,
   navigation: Object,
-}
+|}
 
 const BookButton = ({ book, index, navigation }: Props): Node => (
   <TouchableHighlight

@@ -8,14 +8,14 @@ import { Text, View } from 'react-native'
 import { GiftedChat } from 'react-native-gifted-chat'
 import styles from './styles'
 
-type Props = {}
+type Props = {||}
 
-type State = {
+type State = {|
   messages: Array<{}>,
-}
+|}
 
 // eslint-disable-next-line react/prefer-stateless-function
-class List extends React.Component<Props, State> {
+class UserCommentary extends React.Component<Props, State> {
   state = {
     messages: [],
   }
@@ -63,7 +63,7 @@ class List extends React.Component<Props, State> {
     })
   }
 
-  onSend(messages = []) {
+  onSend(messages: Array<{}> = []) {
     this.setState(previousState => ({
       messages: GiftedChat.append(previousState.messages, messages),
     }))
@@ -92,4 +92,4 @@ class List extends React.Component<Props, State> {
   }
 }
 
-export default List
+export default UserCommentary

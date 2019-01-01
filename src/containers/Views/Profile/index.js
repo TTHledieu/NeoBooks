@@ -6,6 +6,7 @@ import LikedBookButton from 'components/LikedBookButton'
 import Button from 'components/Button'
 import CircleAvatar from 'components/CircleAvatar'
 import { withCamera } from 'containers/CameraContext'
+import colors from 'style/colors'
 import styles from './styles'
 
 const mock = [
@@ -48,7 +49,9 @@ class Profile extends React.Component<Props> {
           />
           <Text style={styles.title}>Théotime</Text>
           <Button style={{ marginTop: 20 }} variant="alert" onPress={() => {}}>
-            Se déconnecter
+            <Text style={{ fontSize: 17, color: colors.white }}>
+              Se déconnecter
+            </Text>
           </Button>
         </View>
         <View style={styles.list}>

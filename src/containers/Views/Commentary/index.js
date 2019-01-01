@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react'
+import type { Node } from 'react'
 import { Text, ScrollView, View } from 'react-native'
 import { withNavigation } from 'react-navigation'
 import ClapButton from 'components/ClapButton'
@@ -16,7 +17,6 @@ const Commentary = ({ navigation }: Props): Node => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        {/* <BackButton /> */}
         <Text style={styles.title}>{"L'avis"}</Text>
         <Text style={styles.subtitle}>de votre critique NEOBOOKS</Text>
         <ClapButton />

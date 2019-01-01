@@ -12,6 +12,7 @@ import TabTop from '../TabTop'
 const DetailsNavigator = TabNavigator(
   {
     Focus: {
+      // $FlowFixMe
       screen: Focus,
       navigationOptions: {
         title: 'Infos',
@@ -19,6 +20,7 @@ const DetailsNavigator = TabNavigator(
       },
     },
     Commentary: {
+      // $FlowFixMe
       screen: Commentary,
       navigationOptions: {
         title: "Avis d'un critique",

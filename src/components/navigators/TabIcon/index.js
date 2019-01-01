@@ -5,10 +5,10 @@ import type { Node } from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import ioniconsByPlatform from 'utils/ionicons'
 
-type Props = {
+type Props = {|
   name: string,
   tintColor: string,
-}
+|}
 
 const TabIcon = ({ name, tintColor }: Props): Node => (
   <Ionicons

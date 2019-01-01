@@ -9,13 +9,18 @@ import ioniconsByPlatform from 'utils/ionicons'
 import colors from 'style/colors'
 import styles from './styles'
 
-type Props = {
+type Props = {|
   setPicture: string => void,
   toggleCamera: boolean => void,
   navigation: Object,
-}
+|}
 
-class CameraView extends React.Component<Props> {
+type State = {|
+  hasCameraPermission: ?boolean,
+  type: string,
+|}
+
+class CameraView extends React.Component<Props, State> {
   state = {
     hasCameraPermission: null,
     type: Camera.Constants.Type.back,
@@ -30,6 +35,7 @@ class CameraView extends React.Component<Props> {
 
   getNewPicture = async () => {
     if (this.cameraRef) {
+      // $FlowFixMe
       const newPicture = await this.cameraRef.takePictureAsync({
         quality: 1,
       })

@@ -1,14 +1,22 @@
 // @flow
 
 import React from 'react'
+import type { Node } from 'react'
 
-const CameraContext = React.createContext({ picture: '', cameraMode: false })
+const CameraContext: React$Context<any> = React.createContext({
+  picture: '',
+  cameraMode: false,
+})
 
-type Props = {
-  children: React.Node,
-}
+type Props = {|
+  children: Node,
+|}
 
-class CameraContextProvider extends React.Component<Props> {
+type State = {|
+  picture: string,
+  cameraMode: boolean,
+|}
+class CameraContextProvider extends React.Component<Props, State> {
   state = { picture: '', cameraMode: false }
 
   setPicture = (picture: string) => {
@@ -35,7 +43,8 @@ class CameraContextProvider extends React.Component<Props> {
   }
 }
 
-export const withCamera = Component => props => (
+// $FlowFixMe
+export const withCamera = Component => (props: { [string]: any }) => (
   <CameraContext.Consumer>
     {data => <Component {...props} {...data} />}
   </CameraContext.Consumer>

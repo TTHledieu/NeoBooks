@@ -6,7 +6,7 @@ import BookButton from 'components/BookButton'
 import books from 'utils/books'
 import styles from './styles'
 
-type Props = {}
+type Props = {||}
 
 // eslint-disable-next-line react/prefer-stateless-function
 class List extends React.Component<Props> {

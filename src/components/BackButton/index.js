@@ -2,15 +2,16 @@
 
 import { Ionicons } from '@expo/vector-icons'
 import React from 'react'
+import type { Node } from 'react'
 import { View, TouchableHighlight } from 'react-native'
 import { withNavigation } from 'react-navigation'
 import ioniconsByPlatform from 'utils/ionicons'
 import colors from 'style/colors'
 import styles from './styles'
 
-type Props = {
+type Props = {|
   navigation: Object,
-}
+|}
 
 const BackButton = ({ navigation }: Props): Node => (
   <View style={styles.backButton}>
