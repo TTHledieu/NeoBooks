@@ -1,7 +1,7 @@
 // @flow
 
 import { StackNavigator } from 'react-navigation'
-import Login from '../../../containers/Views/Login'
+import Login from 'containers/views/Login'
 
 const LoginNavigator = StackNavigator(
   {

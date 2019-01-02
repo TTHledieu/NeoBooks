@@ -2,9 +2,9 @@
 
 import React from 'react'
 import { TabNavigator } from 'react-navigation'
-import Focus from '../../../containers/Views/Focus'
-import Commentary from '../../../containers/Views/Commentary'
-import UserCommentary from '../../../containers/Views/UserCommentary'
+import Focus from 'containers/views/Focus'
+import Commentary from 'containers/views/Commentary'
+import UserCommentary from 'containers/views/UserCommentary'
 import TabIcon from 'components/navigators/TabIcon'
 import colors from 'style/colors'
 import TabTop from '../TabTop'

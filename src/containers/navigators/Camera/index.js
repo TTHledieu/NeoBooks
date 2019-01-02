@@ -1,7 +1,7 @@
 // @flow
 
 import { StackNavigator } from 'react-navigation'
-import Camera from '../../../containers/Views/Camera'
+import Camera from 'containers/views/Camera'
 
 const CameraNavigator = StackNavigator(
   {

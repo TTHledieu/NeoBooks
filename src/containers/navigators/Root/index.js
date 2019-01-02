@@ -2,9 +2,8 @@
 
 import React from 'react'
 import { TabNavigator } from 'react-navigation'
-import List from '../../../containers/Views//List'
-import Profile from '../../../containers/Views/Profile'
-// import Login from 'containers/views/Login'
+import List from 'containers/views//List'
+import Profile from 'containers/views/Profile'
 import TabIcon from 'components/navigators/TabIcon'
 import colors from 'style/colors'
 import TabTop from '../TabTop'
