@@ -3,7 +3,7 @@
 import type { User, UserAction } from 'reduxConfig/actions/user.type'
 
 const initialState: User = {
-  id: -1,
+  id: '',
   name: '',
 }
 

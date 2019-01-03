@@ -2,17 +2,16 @@
 
 import React from 'react'
 import type { Node } from 'react'
-import { Text, View, Animated, Easing } from 'react-native'
+import { Text, View, Animated, Alert, Easing, AsyncStorage } from 'react-native'
 import { withNavigation } from 'react-navigation'
 import { connect } from 'react-redux'
+import * as firebase from 'firebase'
 import { setUser } from 'reduxConfig/actions/user'
-import type { SetUser } from 'reduxConfig/actions/user.type'
 import State from 'components/utils/State'
 import Button from 'components/Button'
 import Input from 'components/Input'
 import colors from 'style/colors'
 import styles from './styles'
-import * as firebase from 'firebase'
 
 const animatedValue = new Animated.Value(0)
 
@@ -31,13 +30,12 @@ const animate = () => {
 }
 
 type Props = {|
-  dSetUser: typeof SetUser,
-  // user: User,
+  dSetUser: typeof setUser,
 |}
 
 const Login = ({ dSetUser }: Props): Node => (
   <Animated.View style={[styles.container, { transform: [{ rotateY }] }]}>
-    <State state={{ id: '', password: '', mode: 'login' }}>
+    <State state={{ email: '', password: '', mode: 'login' }}>
       {({ state, setState }) => (
         <>
           <View style={styles.header}>
@@ -51,11 +49,11 @@ const Login = ({ dSetUser }: Props): Node => (
           <View style={styles.body}>
             <>
               <View style={styles.formElem}>
-                <Text style={styles.headline}>Identifiant</Text>
+                <Text style={styles.headline}>Email</Text>
                 <Input
                   style={{ marginTop: 15, marginLeft: 15 }}
-                  onChange={text => setState({ id: text })}
-                  value={state.id}
+                  onChange={text => setState({ email: text })}
+                  value={state.email}
                   placeholder="John"
                   mode="text"
                 />
@@ -72,35 +70,57 @@ const Login = ({ dSetUser }: Props): Node => (
               <View style={styles.formElemButton}>
                 <Button
                   variant="success"
-                  disabled={!state.id || !state.password}
+                  disabled={!state.email || !state.password}
                   onPress={async () => {
-                    // Request
-
-                    if (state.mode === 'login') {
-                      try {
-                        firebase.auth().signInWithEmailAndPassword(state.id, state.password).then(function (user) {
-                          console.log(user)
-                        })
-                      }
-                      catch (error) {
-                        console.log(error.toString())
-                      }
-                    }
-                    else {
-                      try {
-                        if (state.password.length < 6) {
-                          alert("Veuillez entrer au moin 6 caractère")
-                          return;
+                    try {
+                      if (state.mode === 'login') {
+                        const user = await firebase
+                          .auth()
+                          .signInWithEmailAndPassword(
+                            state.email,
+                            state.password,
+                          )
+                        if (user) {
+                          const tmpUser = {
+                            id: user.user.uid,
+                            name: user.user.email,
+                          }
+                          await AsyncStorage.setItem(
+                            'user',
+                            JSON.stringify(tmpUser),
+                          )
+                          dSetUser(tmpUser)
                         }
-                        firebase.auth().createUserWithEmailAndPassword(state.id, state.password);
+                      } else {
+                        if (state.password.length < 6) {
+                          Alert.alert(
+                            'Le password doit avoir au moins 6 caractéres',
+                          )
+                          return
+                        }
+                        const user = await firebase
+                          .auth()
+                          .createUserWithEmailAndPassword(
+                            state.email,
+                            state.password,
+                          )
+                        if (user) {
+                          const tmpUser = {
+                            id: user.user.uid,
+                            name: user.user.email,
+                          }
+                          await AsyncStorage.setItem(
+                            'user',
+                            JSON.stringify(tmpUser),
+                          )
+                          dSetUser(tmpUser)
+                        }
                       }
-                      catch(error) {
-                        console.log(error.toString())
-                      }
+                    } catch (error) {
+                      Alert.alert(
+                        "Petit problème lors de la connexion/l'inscription. Veuillez réessayer !",
+                      )
                     }
-
-                    await setTimeout(() => {}, 1000)
-                    dSetUser({ id: 1, name: 'tth' })
                   }}
                 >
                   <Text style={{ fontSize: 17, color: colors.white }}>
@@ -115,6 +135,8 @@ const Login = ({ dSetUser }: Props): Node => (
                     animate()
                     setState(prevState => ({
                       mode: prevState.mode === 'login' ? 'register' : 'login',
+                      id: '',
+                      password: '',
                     }))
                   }}
                 >

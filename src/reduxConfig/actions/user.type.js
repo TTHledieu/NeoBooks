@@ -2,14 +2,14 @@
 
 // State
 export type User = {
-  +id: number,
+  +id: string,
   +name: string,
 }
 
 // Actions
 export type SetUser = {
   +type: 'SET_USER',
-  +id: number,
+  +id: string,
   +name: string,
 }
 

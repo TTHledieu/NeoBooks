@@ -8,7 +8,7 @@ import type { ViewStyleProp } from 'react-native/Libraries/StyleSheet/StyleSheet
 import styles from './styles'
 
 type Props = {|
-  onPress: () => void | Promise<any>,
+  onPress: () => void | any | Promise<any>,
   children: React$Element<any>,
   variant?: 'primary' | 'success' | 'warning' | 'alert',
   style?: ViewStyleProp,
