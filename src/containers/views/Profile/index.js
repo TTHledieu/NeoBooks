@@ -37,6 +37,7 @@ type Props = {
 // eslint-disable-next-line react/prefer-stateless-function
 class Profile extends React.Component<Props> {
   render() {
+    const sortedLikedBooks = mock.slice().sort((a, b) => b.clap - a.clap)
     return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -59,7 +60,7 @@ class Profile extends React.Component<Props> {
             Les livres que vous appréciez le plus
           </Text>
           <ScrollView showsVerticalScrollIndicator={false}>
-            {mock.map(
+            {sortedLikedBooks.map(
               (book, index) =>
                 book.clap > 10 && (
                   <LikedBookButton key={book.title} book={book} index={index} />

@@ -7,7 +7,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
   },
   textElem: {
-    flex: 8,
+    flex: 7,
     flexDirection: 'column',
     paddingLeft: 20,
     alignItems: 'flex-start',
@@ -17,13 +17,20 @@ export default StyleSheet.create({
     fontSize: 17,
     fontWeight: '700',
   },
-  clapElem: {
-    fontSize: 14,
-    fontWeight: '500',
-    paddingLeft: 10,
+  clapButton: {
+    display: 'flex',
+    borderRadius: 30,
+    backgroundColor: '#ecf0f1',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  clapImage: {
+    width: 30,
+    height: 30,
   },
   iconElem: {
-    flex: 2,
+    flex: 3,
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
   },

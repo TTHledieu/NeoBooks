@@ -2,42 +2,36 @@
 
 import React from 'react'
 import type { Node } from 'react'
-import { Text, View, TouchableHighlight } from 'react-native'
-import { Ionicons } from '@expo/vector-icons'
-import { withNavigation } from 'react-navigation'
-import ioniconsByPlatform from 'utils/ionicons'
-import type { Book } from 'utils/books'
+import { Text, View, Image } from 'react-native'
 import colors from 'style/colors'
+import clap from 'assets/clap.png'
 import styles from './styles'
 
 type Props = {|
-  book: Book,
+  book: {
+    title: string,
+    clap: number,
+  },
   index: number,
-  navigation: Object,
 |}
 
-const LikedBookButton = ({ book, index, navigation }: Props): Node => (
-  <TouchableHighlight
-    onPress={() => navigation.navigate('DetailsScreen', { book })}
+const LikedBookButton = ({ book, index }: Props): Node => (
+  <View
+    style={[
+      styles.elem,
+      { backgroundColor: index % 2 ? colors.lightGray : colors.white },
+    ]}
   >
-    <View
-      style={[
-        styles.elem,
-        { backgroundColor: index % 2 ? colors.lightGray : colors.white },
-      ]}
-    >
-      <View style={styles.textElem}>
-        <Text style={styles.titleElem}>{book.title}</Text>
-      </View>
-      <View style={styles.iconElem}>
-        <Ionicons
-          name={ioniconsByPlatform('arrow-forward', false)}
-          size={16}
-          color={colors.black}
-        />
+    <View style={styles.textElem}>
+      <Text style={styles.titleElem}>{book.title}</Text>
+    </View>
+    <View style={styles.iconElem}>
+      <Text style={{ fontSize: 18 }}>{`${book.clap} `}</Text>
+      <View style={styles.clapButton}>
+        <Image source={clap} style={styles.clapImage} />
       </View>
     </View>
-  </TouchableHighlight>
+  </View>
 )
 
-export default withNavigation(LikedBookButton)
+export default LikedBookButton
