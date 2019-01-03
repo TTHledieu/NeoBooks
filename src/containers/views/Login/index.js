@@ -12,6 +12,7 @@ import Button from 'components/Button'
 import Input from 'components/Input'
 import colors from 'style/colors'
 import styles from './styles'
+import * as firebase from 'firebase'
 
 const animatedValue = new Animated.Value(0)
 
@@ -74,6 +75,30 @@ const Login = ({ dSetUser }: Props): Node => (
                   disabled={!state.id || !state.password}
                   onPress={async () => {
                     // Request
+
+                    if (state.mode === 'login') {
+                      try {
+                        firebase.auth().signInWithEmailAndPassword(state.id, state.password).then(function (user) {
+                          console.log(user)
+                        })
+                      }
+                      catch (error) {
+                        console.log(error.toString())
+                      }
+                    }
+                    else {
+                      try {
+                        if (state.password.length < 6) {
+                          alert("Veuillez entrer au moin 6 caractère")
+                          return;
+                        }
+                        firebase.auth().createUserWithEmailAndPassword(state.id, state.password);
+                      }
+                      catch(error) {
+                        console.log(error.toString())
+                      }
+                    }
+
                     await setTimeout(() => {}, 1000)
                     dSetUser({ id: 1, name: 'tth' })
                   }}

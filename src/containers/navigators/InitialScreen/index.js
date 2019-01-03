@@ -6,7 +6,7 @@ import LoginNavigator from 'containers/navigators/Login'
 import rootLayout from 'containers/navigators/createLayoutNavigator'
 
 const InitialScreen = (): Node => {
-  const user = true
+  const user = false
   const Layout = rootLayout()
   if (user) {
     return <Layout />
